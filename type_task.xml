@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<type_task>
+    <type>
+        <id>1</id>
+        <type>home</type>
+        <date_from>2017-02-19T00:00:00+02:00</date_from>
+        <date_to>2099-01-01T00:00:00+02:00</date_to>
+    </type>
+    <type>
+        <id>2</id>
+        <type>family</type>
+        <date_from>2017-02-19T00:00:00+02:00</date_from>
+        <date_to>2099-01-01T00:00:00+02:00</date_to>
+    </type>
+    <type>
+        <id>3</id>
+        <type>work</type>
+        <date_from>2017-02-19T00:00:00+02:00</date_from>
+        <date_to>2099-01-01T00:00:00+02:00</date_to>
+    </type>
+    <type>
+        <id>4</id>
+        <type>other</type>
+        <date_from>2017-02-19T00:00:00+02:00</date_from>
+        <date_to>2099-01-01T00:00:00+02:00</date_to>
+    </type>
+</type_task>

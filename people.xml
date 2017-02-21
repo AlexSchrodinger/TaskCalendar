@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<peoples>
+    <people>
+        <id>1</id>
+        <firstname>Ivan</firstname>
+        <lastname>Ivanov</lastname>
+        <email>ivan@ivanov.ru</email>
+        <login>ivan</login>
+        <password>pass</password>
+        <is_blocked>false</is_blocked>
+    </people>
+    <people>
+        <id>2</id>
+        <firstname>Petr</firstname>
+        <lastname>Petrov</lastname>
+        <email>petr@petrov.ru</email>
+        <login>alex</login>
+        <password>pass</password>
+        <is_blocked>false</is_blocked>
+    </people>
+    <people>
+        <id>3</id>
+        <firstname>Semen</firstname>
+        <lastname>Semenov</lastname>
+        <email>semen@semenov.ru</email>
+        <login>semen</login>
+        <password>pass</password>
+        <is_blocked>false</is_blocked>
+    </people>
+    <people>
+        <id>4</id>
+        <firstname>Anton</firstname>
+        <lastname>Antonov</lastname>
+        <email>anton@antonov.ru</email>
+        <login>anton</login>
+        <password>pass</password>
+        <is_blocked>false</is_blocked>
+    </people>
+</peoples>

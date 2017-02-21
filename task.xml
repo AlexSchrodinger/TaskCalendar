@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<tasks>
+    <task>
+        <id>1</id>
+        <event>Купить продукты</event>
+        <date>2017-02-21T00:00:00+02:00</date>
+        <time>1970-01-01T00:00:00+03:00</time>
+        <id_user>2</id_user>
+        <id_type>1</id_type>
+        <is_complete>false</is_complete>
+    </task>
+    <task>
+        <id>2</id>
+        <event>Забрать ребенка из школы</event>
+        <date>2017-02-23T00:00:00+02:00</date>
+        <time>1970-01-01T00:00:00+03:00</time>
+        <id_user>3</id_user>
+        <id_type>2</id_type>
+        <is_complete>false</is_complete>
+    </task>
+    <task>
+        <id>3</id>
+        <event>Закончить проект</event>
+        <date>2017-02-14T00:00:00+02:00</date>
+        <time>1970-01-01T00:00:00+03:00</time>
+        <id_user>4</id_user>
+        <id_type>3</id_type>
+        <is_complete>false</is_complete>
+    </task>
+    <task>
+        <id>4</id>
+        <event>Скачать сериал</event>
+        <date>2017-02-25T00:00:00+02:00</date>
+        <time>1970-01-01T00:00:00+03:00</time>
+        <id_user>1</id_user>
+        <id_type>4</id_type>
+        <is_complete>false</is_complete>
+    </task>
+</tasks>
