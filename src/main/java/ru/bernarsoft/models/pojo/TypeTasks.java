@@ -1,4 +1,4 @@
-package ru.bernarsoft.model;
+package ru.bernarsoft.models.pojo;
 
 
 import javax.xml.bind.annotation.XmlElement;

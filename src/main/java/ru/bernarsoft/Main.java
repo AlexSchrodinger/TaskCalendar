@@ -1,43 +1,63 @@
 package ru.bernarsoft;
 
-
-import ru.bernarsoft.helper.ConnectJDBC;
-import ru.bernarsoft.manager.CheckListDB;
-import ru.bernarsoft.manager.PeopleDB;
-import ru.bernarsoft.manager.TaskDB;
-import ru.bernarsoft.manager.TypeTaskDB;
-import ru.bernarsoft.model.*;
-import ru.bernarsoft.parser.ParserXML;
+import org.apache.log4j.Logger;
+import ru.bernarsoft.models.manager.DownloadFromDB;
 
 import java.sql.SQLException;
 
 public class Main {
-
-
+    private static final Logger LOGGER = Logger.getLogger(Main.class);
 
     public static void main(String[] args) throws SQLException {
-        ConnectJDBC connectJDBC = ConnectJDBC.getInstance();
+        DownloadFromDB downloadFromDB = new DownloadFromDB();
 
-        Peoples peoples = new Peoples();
-        PeopleDB peopleDB = new PeopleDB(connectJDBC);
-        peoples.setPeoples(peopleDB.getAll());
-        ParserXML.parseToXml("people.xml", peoples, Peoples.class);
+        Thread thread1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    downloadFromDB.downloadPeoples();
+                } catch (SQLException e) {
+                    LOGGER.error(e);
+                }
+            }
+        });
 
-        CheckLists checkLists = new CheckLists();
-        CheckListDB checkListDB = new CheckListDB(connectJDBC);
-        checkLists.setChecks(checkListDB.getAll());
-        ParserXML.parseToXml("check_list.xml", checkLists, CheckLists.class);
+        Thread thread2 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    downloadFromDB.downloadChecks();
+                } catch (SQLException e) {
+                    LOGGER.error(e);
+                }
+            }
+        });
 
+        Thread thread3 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    downloadFromDB.downloadTypes();
+                } catch (SQLException e) {
+                    LOGGER.error(e);
+                }
+            }
+        });
 
-        TypeTasks typeTasks = new TypeTasks();
-        TypeTaskDB typeTaskDB = new TypeTaskDB(connectJDBC);
-        typeTasks.setTypes(typeTaskDB.getAll());
-        ParserXML.parseToXml("type_task.xml", typeTasks, TypeTasks.class);
+        Thread thread4 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    downloadFromDB.downloadTasks();
+                } catch (SQLException e) {
+                    LOGGER.error(e);
+                }
+            }
+        });
 
-        Tasks tasks = new Tasks();
-        TaskDB taskDB = new TaskDB(connectJDBC);
-        tasks.setTasks(taskDB.getAll());
-        ParserXML.parseToXml("task.xml", tasks, Tasks.class);
-
+        thread1.start();
+        thread2.start();
+        thread3.start();
+        thread4.start();
     }
 }

@@ -3,37 +3,37 @@
     <check>
         <id>1</id>
         <id_task>1</id_task>
-        <description>Молоко</description>
+        <description>Хлеб</description>
         <is_complete>false</is_complete>
     </check>
     <check>
         <id>2</id>
         <id_task>1</id_task>
-        <description>Хлеб</description>
+        <description>Молоко</description>
         <is_complete>false</is_complete>
     </check>
     <check>
         <id>3</id>
         <id_task>1</id_task>
-        <description>Овощи</description>
+        <description>Фрукты</description>
         <is_complete>false</is_complete>
     </check>
     <check>
         <id>4</id>
-        <id_task>3</id_task>
-        <description>Сделать БД</description>
+        <id_task>2</id_task>
+        <description>Архитектура</description>
         <is_complete>false</is_complete>
     </check>
     <check>
         <id>5</id>
-        <id_task>3</id_task>
-        <description>Сделать выгрузку в XML</description>
+        <id_task>2</id_task>
+        <description>Сделать БД</description>
         <is_complete>false</is_complete>
     </check>
     <check>
         <id>6</id>
-        <id_task>3</id_task>
-        <description>Добавить многопоточность</description>
+        <id_task>2</id_task>
+        <description>Вывод на сайт</description>
         <is_complete>false</is_complete>
     </check>
 </check_list>

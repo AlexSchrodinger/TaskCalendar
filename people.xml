@@ -1,39 +1,73 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <peoples>
-    <people>
+    <peoples>
         <id>1</id>
-        <firstname>Ivan</firstname>
-        <lastname>Ivanov</lastname>
-        <email>ivan@ivanov.ru</email>
-        <login>ivan</login>
-        <password>pass</password>
+        <firstname>Alex</firstname>
+        <lastname>Alex</lastname>
+        <email>alex@alex.ru</email>
+        <login>admin</login>
+        <password>123</password>
         <is_blocked>false</is_blocked>
-    </people>
-    <people>
+        <role>admin</role>
+    </peoples>
+    <peoples>
         <id>2</id>
-        <firstname>Petr</firstname>
-        <lastname>Petrov</lastname>
-        <email>petr@petrov.ru</email>
-        <login>alex</login>
-        <password>pass</password>
-        <is_blocked>false</is_blocked>
-    </people>
-    <people>
-        <id>3</id>
-        <firstname>Semen</firstname>
-        <lastname>Semenov</lastname>
-        <email>semen@semenov.ru</email>
-        <login>semen</login>
-        <password>pass</password>
-        <is_blocked>false</is_blocked>
-    </people>
-    <people>
-        <id>4</id>
         <firstname>Anton</firstname>
         <lastname>Antonov</lastname>
-        <email>anton@antonov.ru</email>
+        <email>anton@anton.ru</email>
         <login>anton</login>
-        <password>pass</password>
+        <password>1</password>
         <is_blocked>false</is_blocked>
-    </people>
+        <role>user</role>
+    </peoples>
+    <peoples>
+        <id>3</id>
+        <firstname>Petr</firstname>
+        <lastname>Petrov</lastname>
+        <email>petr@petr.ru</email>
+        <login>petr</login>
+        <password>1</password>
+        <is_blocked>false</is_blocked>
+        <role>user</role>
+    </peoples>
+    <peoples>
+        <id>4</id>
+        <firstname>Semen</firstname>
+        <lastname>Semenov</lastname>
+        <email>semen@semen.ru</email>
+        <login>semen</login>
+        <password>1</password>
+        <is_blocked>false</is_blocked>
+        <role>user</role>
+    </peoples>
+    <peoples>
+        <id>5</id>
+        <firstname>Ivan</firstname>
+        <lastname>Ivanov</lastname>
+        <email>ivan@ivan.ru</email>
+        <login>ivan</login>
+        <password>1</password>
+        <is_blocked>false</is_blocked>
+        <role>user</role>
+    </peoples>
+    <peoples>
+        <id>6</id>
+        <firstname>a</firstname>
+        <lastname>a</lastname>
+        <email>admin@site.com</email>
+        <login>new</login>
+        <password>111</password>
+        <is_blocked>false</is_blocked>
+        <role>user</role>
+    </peoples>
+    <peoples>
+        <id>7</id>
+        <firstname>test</firstname>
+        <lastname>test</lastname>
+        <email>test@test.ru</email>
+        <login>test</login>
+        <password>12345</password>
+        <is_blocked>false</is_blocked>
+        <role>user</role>
+    </peoples>
 </peoples>

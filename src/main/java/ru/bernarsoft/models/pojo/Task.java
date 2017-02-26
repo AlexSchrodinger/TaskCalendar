@@ -1,17 +1,15 @@
-package ru.bernarsoft.model;
+package ru.bernarsoft.models.pojo;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.sql.Date;
-import java.sql.Time;
+
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Task {
   private Long id;
   private String event;
   private java.util.Date date;
-  private java.util.Date time;
   private Long id_user;
   private Long id_type;
   private Boolean is_complete;
@@ -19,11 +17,10 @@ public class Task {
   public Task() {
   }
 
-  public Task(Long id, String event, Date date, Date time, Long id_user, Long id_type, Boolean is_complete) {
+  public Task(Long id, String event, java.util.Date date, Long id_user, Long id_type, Boolean is_complete) {
     this.id = id;
     this.event = event;
     this.date = date;
-    this.time = time;
     this.id_user = id_user;
     this.id_type = id_type;
     this.is_complete = is_complete;
@@ -51,14 +48,6 @@ public class Task {
 
   public void setDate(java.util.Date date) {
     this.date = date;
-  }
-
-  public java.util.Date getTime() {
-    return time;
-  }
-
-  public void setTime(java.util.Date time) {
-    this.time = time;
   }
 
   public Long getId_user() {

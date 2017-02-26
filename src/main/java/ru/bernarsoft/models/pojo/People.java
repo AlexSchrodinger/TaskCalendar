@@ -1,4 +1,4 @@
-package ru.bernarsoft.model;
+package ru.bernarsoft.models.pojo;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -14,11 +14,14 @@ public class People {
   private String login;
   private String password;
   private Boolean is_blocked;
+  private String role;
+
+
 
   public People() {
   }
 
-  public People(Long id, String firstname, String lastname, String email, String login, String password, Boolean is_blocked) {
+  public People(Long id, String firstname, String lastname, String email, String login, String password, Boolean is_blocked, String role) {
     this.id = id;
     this.firstname = firstname;
     this.lastname = lastname;
@@ -26,6 +29,7 @@ public class People {
     this.login = login;
     this.password = password;
     this.is_blocked = is_blocked;
+    this.role = role;
   }
 
   public Long getId() {
@@ -82,5 +86,13 @@ public class People {
 
   public void setIs_blocked(Boolean is_blocked) {
     this.is_blocked = is_blocked;
+  }
+
+  public String getRole() {
+    return role;
+  }
+
+  public void setRole(String role) {
+    this.role = role;
   }
 }
