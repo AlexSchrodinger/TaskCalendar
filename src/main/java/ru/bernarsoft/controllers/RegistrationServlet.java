@@ -1,6 +1,7 @@
 package ru.bernarsoft.controllers;
 
 import org.apache.log4j.Logger;
+import ru.bernarsoft.common.exceptions.PeopleDAOException;
 import ru.bernarsoft.services.PeopleService;
 
 import javax.servlet.ServletException;
@@ -26,11 +27,15 @@ public class RegistrationServlet extends HttpServlet {
         String email = req.getParameter("email");
         String login = req.getParameter("login");
         String password = req.getParameter("password");
-        if(PeopleService.registration(firstname, lastname, email, login, password)) {
-            LOGGER.trace("true");
-            resp.sendRedirect("/");
-        } else {
-            LOGGER.trace("false");
+        try {
+            if(PeopleService.registration(firstname, lastname, email, login, password)) {
+                LOGGER.trace("true");
+                resp.sendRedirect("/");
+            } else {
+                LOGGER.trace("false");
+                req.getRequestDispatcher("/error.jsp").forward(req, resp);
+            }
+        } catch (PeopleDAOException e) {
             req.getRequestDispatcher("/error.jsp").forward(req, resp);
         }
     }

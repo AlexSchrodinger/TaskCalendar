@@ -3,6 +3,7 @@ package ru.bernarsoft.models.DAO;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import ru.bernarsoft.common.exceptions.PeopleDAOException;
 import ru.bernarsoft.models.connector.Connector;
 import ru.bernarsoft.models.pojo.People;
 
@@ -89,10 +90,15 @@ public class PeopleDAO {
 
 
     public static boolean registrationPeople(String firstName, String lastName, String email,
-                                      String login, String password) {
+                                      String login, String password) throws PeopleDAOException {
         try {
             Connector connector = Connector.getInstance();
             PreparedStatement ps = connector.preparedStatement(SQL_CREATE_USER);
+
+            if(firstName == "" || lastName == "" || email == "" || login == "" || password == "") {
+                LOGGER.error("Empty Inputs");
+                throw new PeopleDAOException();
+            }
 
             ps.setString(1, firstName);
             ps.setString(2, lastName);
@@ -109,10 +115,11 @@ public class PeopleDAO {
             }
         } catch (SQLException e) {
             LOGGER.error(e);
+            throw new PeopleDAOException();
         }
         return false;
     }
-    public static People getUserByLoginAndPassword(String login, String password) {
+    public static People getUserByLoginAndPassword(String login, String password) throws PeopleDAOException {
 
         People people = null;
         try {
@@ -133,9 +140,11 @@ public class PeopleDAO {
                         resultSet.getString("role"));
             } else {
                 LOGGER.debug(login + " " + password + " not found");
+                throw new PeopleDAOException();
             }
         } catch (SQLException e) {
             LOGGER.error(e);
+            throw new PeopleDAOException();
         }
         return people;
     }

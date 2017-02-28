@@ -1,7 +1,6 @@
 package ru.bernarsoft.models.manager;
 
 import ru.bernarsoft.models.DAO.PeopleDAO;
-import ru.bernarsoft.models.pojo.People;
 import ru.bernarsoft.models.pojo.Peoples;
 import ru.bernarsoft.parser.ParserXML;
 
@@ -18,8 +17,5 @@ public class UploadToDB {
         PeopleDAO peopleDB = new PeopleDAO();
         peopleDB.upload(peoples.getPeoples());
 
-        for (People people:peoples.getPeoples()) {
-            System.out.println(people.getFirstname());
-        }
     }
 }

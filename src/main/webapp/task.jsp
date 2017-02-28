@@ -3,20 +3,25 @@
 <html>
 <head>
     <title>Calendar</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
 </head>
 <body>
-<h2>Список задач</h2>
 
-<div>
-    <table border="1" width="100%" cellpadding="5">
+<div class="container">
+    <h2>Список задач</h2>
+    <table class="table table-striped">
         <tr>
-            <td><b>Номер</b></td>
+            <td><b>#</b></td>
             <td><b>Задача</b></td>
             <td><b>Дата</b></td>
             <td><b>Исполнено</b></td>
         </tr>
-
-
 
         <jsp:useBean id="listOfTask" scope="request" type="java.util.List"/>
         <c:forEach items="${listOfTask}" var="task">
@@ -29,6 +34,7 @@
             </tr>
         </c:forEach>
     </table>
+    <a href="/">На главную</a>
 </div>
 </body>
 </html>
