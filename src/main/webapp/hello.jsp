@@ -12,15 +12,14 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="container">
+<div class="container text-center">
     <h3>Здравствуйте, <c:out value="${people.getFirstname()}"></c:out></h3>
-</div>
-<div class="container">
-
-    <form action="/logout" method="post">
-        <h4>Выйти: <input type="submit" class="btn btn-warning" value="logout" formmethod="post"></h4>
-    </form>
-    <a href="/">На главную</a>
+    <div>
+        <form action="/logout" method="post">
+            <h4>Выйти: <input type="submit" class="btn btn-warning" value="logout" formmethod="post"></h4>
+        </form>
+        <a href="/">На главную</a>
+    </div>
 </div>
 </body>
 </html>

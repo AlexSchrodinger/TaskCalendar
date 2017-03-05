@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="ru.bernarsoft.models.pojo.Task" %>
 <html>
 <head>
     <title>Calendar</title>
@@ -14,6 +15,16 @@
 <body>
 
 <div class="container">
+    <% if (request.getSession().getAttribute("firstName") != null) {%>
+    <div class=" text-center col-md-4 col-md-offset-10">
+        <h4>Пользователь, <%= request.getSession().getAttribute("firstName") %></h4>
+        <%--<h4>Пользователь, <c:out value="${request.getSession().getAttribute('firstName')}"/></h4>--%>
+        <a href="/logout">Выйти</a>
+    </div>
+    <%}%>
+</div>
+
+<div class="container">
     <h2>Список задач</h2>
     <table class="table table-striped">
         <tr>
@@ -23,18 +34,19 @@
             <td><b>Исполнено</b></td>
         </tr>
 
-        <jsp:useBean id="listOfTask" scope="request" type="java.util.List"/>
+        <%--<jsp:useBean id="listOfTask" scope="request" type="java.util.List"/>--%>
         <c:forEach items="${listOfTask}" var="task">
             <tr>
-                <td><c:out value="${task.getId()}"></c:out></td>
-                <td><c:out value="${task.getEvent()}"></c:out></td>
-                <td><c:out value="${task.getDate()}"></c:out></td>
-                <td><c:out value="${task.getIs_complete()}"></c:out></td>
+                <td><c:out value="${task.id}"></c:out></td>
+                <td><c:out value="${task.event}"></c:out></td>
+                <td><c:out value="${task.date}"></c:out></td>
+                <td><c:out value="${task.is_complete}"></c:out></td>
 
             </tr>
         </c:forEach>
     </table>
     <a href="/">На главную</a>
 </div>
+
 </body>
 </html>

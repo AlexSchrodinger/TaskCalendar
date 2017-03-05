@@ -1,9 +1,12 @@
 package ru.bernarsoft.controllers;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import ru.bernarsoft.common.exceptions.PeopleDAOException;
-import ru.bernarsoft.services.PeopleService;
+import ru.bernarsoft.services.PeopleServiceImpl;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +17,25 @@ import java.io.IOException;
 @WebServlet("/registration")
 public class RegistrationServlet extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(RegistrationServlet.class);
+
+    private PeopleServiceImpl peopleServiceImpl;
+
+
+    @Autowired
+    public void setPeopleServiceImpl(PeopleServiceImpl peopleServiceImpl) {
+        this.peopleServiceImpl = peopleServiceImpl;
+    }
+
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext
+                (this, config.getServletContext());
+    }
+
+
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/registration.jsp").forward(req, resp);
@@ -28,7 +50,7 @@ public class RegistrationServlet extends HttpServlet {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
         try {
-            if(PeopleService.registration(firstname, lastname, email, login, password)) {
+            if(peopleServiceImpl.registration(firstname, lastname, email, login, password)) {
                 LOGGER.trace("true");
                 resp.sendRedirect("/");
             } else {

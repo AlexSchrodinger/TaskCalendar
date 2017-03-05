@@ -3,6 +3,7 @@ package ru.bernarsoft.models.DAO;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Component;
 import ru.bernarsoft.common.exceptions.PeopleDAOException;
 import ru.bernarsoft.models.connector.Connector;
 import ru.bernarsoft.models.pojo.People;
@@ -14,6 +15,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+@Component
 public class PeopleDAO {
 
     private static final Logger LOGGER = LogManager.getLogger(PeopleDAO.class);
@@ -89,16 +91,11 @@ public class PeopleDAO {
     }
 
 
-    public static boolean registrationPeople(String firstName, String lastName, String email,
+    public boolean registrationPeople(String firstName, String lastName, String email,
                                       String login, String password) throws PeopleDAOException {
         try {
             Connector connector = Connector.getInstance();
             PreparedStatement ps = connector.preparedStatement(SQL_CREATE_USER);
-
-            if(firstName == "" || lastName == "" || email == "" || login == "" || password == "") {
-                LOGGER.error("Empty Inputs");
-                throw new PeopleDAOException();
-            }
 
             ps.setString(1, firstName);
             ps.setString(2, lastName);
@@ -119,7 +116,7 @@ public class PeopleDAO {
         }
         return false;
     }
-    public static People getUserByLoginAndPassword(String login, String password) throws PeopleDAOException {
+    public People getUserByLoginAndPassword(String login, String password) throws PeopleDAOException {
 
         People people = null;
         try {

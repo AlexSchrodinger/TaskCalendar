@@ -13,27 +13,36 @@
 <body>
 
 <div class="container">
+    <% if (request.getSession().getAttribute("firstName") != null) {%>
+    <div class=" text-center col-md-4 col-md-offset-10">
+        <h4>Пользователь, <%= request.getSession().getAttribute("firstName") %></h4>
+        <a href="/logout">Выйти</a>
+    </div>
+    <%}%>
+</div>
+
+<div class="container">
     <h1>Регистрация:</h1>
     <form action="/registration" method="post">
         <div class="form-group">
             <label for="firstname">Firstname:</label>
-            <input type="text" name="firstname" id="firstname">
+            <input type="text" name="firstname" id="firstname" required>
         </div>
         <div class="form-group">
             <label for="lastname">Lastname:</label>
-            <input type="text" name="lastname" id="lastname">
+            <input type="text" name="lastname" id="lastname" required>
         </div>
         <div class="form-group">
             <label for="email">Email:</label>
-            <input type="text" name="email" id="email">
+            <input type="email" name="email" id="email" required>
         </div>
         <div class="form-group">
             <label for="login">Login:</label>
-            <input type="text" name="login" id="login">
+            <input type="text" name="login" id="login" required>
         </div>
         <div class="form-group">
             <label for="password">Password:</label>
-            <input type="password" name="password" id="password">
+            <input type="password" name="password" id="password" required>
         </div>
         <input type="submit" class="btn btn-primary" value="Submit" formmethod="post">
     </form>

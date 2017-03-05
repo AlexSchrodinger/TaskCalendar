@@ -14,12 +14,14 @@ public class LogoutServlet extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(LogoutServlet.class);
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        LOGGER.debug("logout");
+        req.getSession().setAttribute("firstName", null);
+        req.getRequestDispatcher("").forward(req, resp);
     }
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        LOGGER.debug("logout");
-        req.getSession().setAttribute("access", "AccessDenied");
-        req.getRequestDispatcher("").forward(req, resp);
+
     }
 }

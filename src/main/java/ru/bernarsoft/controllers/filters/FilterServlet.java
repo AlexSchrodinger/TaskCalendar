@@ -18,7 +18,7 @@ public class FilterServlet implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 
         HttpServletRequest httpRequest = (HttpServletRequest) request;
-        if(("AccessIsAllowed").equals(httpRequest.getSession().getAttribute("access"))) {
+        if(httpRequest.getSession().getAttribute("firstName") != null ) {
             LOGGER.debug("Access Is Allowed");
             chain.doFilter(request, response);
         } else

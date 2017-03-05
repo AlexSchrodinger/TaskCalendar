@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -12,10 +13,18 @@
 </head>
 <body>
 
+<div class="container">
+    <% if (request.getSession().getAttribute("firstName") != null) {%>
+    <div class=" text-center col-md-4 col-md-offset-10">
+        <h4>Пользователь, <%= request.getSession().getAttribute("firstName") %></h4>
+        <a href="/logout">Выйти</a>
+    </div>
+    <%}%>
+</div>
 
 <div class="container">
     <H3>Добро пожаловать на главную страницу</H3>
-    <div class="list-group">
+    <div class="list-group col-md-6">
         <a href="/registration" class="list-group-item">Регистрация</a>
         <a href="/login" class="list-group-item">Авторизация</a>
         <a href="/calendar/task" class="list-group-item">Задачи</a>
