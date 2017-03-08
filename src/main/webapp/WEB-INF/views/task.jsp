@@ -40,7 +40,19 @@
                 <td><c:out value="${task.id}"></c:out></td>
                 <td><c:out value="${task.event}"></c:out></td>
                 <td><c:out value="${task.date}"></c:out></td>
-                <td><c:out value="${task.is_complete}"></c:out></td>
+                <%--<td><c:out value="${task.is_complete}"></c:out></td>--%>
+                <td>
+                    <div class="checkbox">
+                        <c:choose>
+                            <c:when test="${task.is_complete}">
+                                <label><input type="checkbox" value="" checked>Исполнено</label>
+                            </c:when>
+                            <c:otherwise>
+                                <label><input type="checkbox" value="">Исполнено</label>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                </td>
 
             </tr>
         </c:forEach>

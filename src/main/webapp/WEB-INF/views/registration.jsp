@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 <head>
     <title>Registration</title>
@@ -22,8 +23,9 @@
 </div>
 
 <div class="container">
-    <h1>Регистрация:</h1>
-    <form action="/registration" method="post">
+    <div class="col-md-4 text-right">
+        <h1>Регистрация:</h1></br>
+    <form action="/registration"  method="post">
         <div class="form-group">
             <label for="firstname">Firstname:</label>
             <input type="text" name="firstname" id="firstname" required>
@@ -46,6 +48,7 @@
         </div>
         <input type="submit" class="btn btn-primary" value="Submit" formmethod="post">
     </form>
+    </div>
 </div>
 </body>
 </html>

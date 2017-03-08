@@ -4,6 +4,7 @@ package ru.bernarsoft.models.DAO;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import ru.bernarsoft.common.exceptions.PeopleDAOException;
 import ru.bernarsoft.models.connector.Connector;
 import ru.bernarsoft.models.pojo.People;
@@ -15,7 +16,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-@Component
+@Repository
 public class PeopleDAO {
 
     private static final Logger LOGGER = LogManager.getLogger(PeopleDAO.class);
