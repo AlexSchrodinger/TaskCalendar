@@ -55,11 +55,15 @@ public class LoginController {
         if(people.getId() != 0) {
             request.getSession().setAttribute("firstName", people.getFirstname());
             LOGGER.debug("Auth");
-            if(("on").equals(servletConfig.getInitParameter("notification"))) {
-                if(("admin").equals(people.getRole())) {
+            if(("admin").equals(people.getRole())) {
+                if(("on").equals(servletConfig.getInitParameter("notification"))) {
                     notificator.notifyAdminEnter(people.getEmail());
                 }
+//                return "admin";
+                return "redirect:/admin";
             }
+
+
             return "redirect:/calendar/task";
         } else {
             LOGGER.debug("Fail auth");

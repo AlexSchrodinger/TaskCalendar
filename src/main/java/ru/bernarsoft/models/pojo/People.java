@@ -16,9 +16,10 @@ public class People {
   private Boolean is_blocked;
   private String role;
 
-
-
   public People() {
+  }
+
+  public People(People people) {
   }
 
   public People(Long id, String firstname, String lastname, String email, String login, String password, Boolean is_blocked, String role) {

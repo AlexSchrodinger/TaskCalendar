@@ -7,6 +7,9 @@ import ru.bernarsoft.models.DAO.PeopleDAO;
 import ru.bernarsoft.models.pojo.People;
 import ru.bernarsoft.services.interfaces.PeopleService;
 
+import java.sql.SQLException;
+import java.util.List;
+
 @Service
 public class PeopleServiceImpl implements PeopleService {
 
@@ -16,6 +19,7 @@ public class PeopleServiceImpl implements PeopleService {
     public PeopleServiceImpl(PeopleDAO peopleDAO) {
         this.peopleDAO = peopleDAO;
     }
+
 
     @Override
     public People authentication(String login, String password) throws PeopleDAOException {
@@ -27,5 +31,25 @@ public class PeopleServiceImpl implements PeopleService {
                                 String login, String password) throws PeopleDAOException {
         return peopleDAO.registrationPeople(firstName, lastName, email,
                 login, password);
+    }
+
+    @Override
+    public People getPeopleByLogin(String login) throws PeopleDAOException {
+        return peopleDAO.getUserByLogin(login);
+    }
+
+    @Override
+    public List<People> getAllPeoples() throws PeopleDAOException {
+        return peopleDAO.getAllPeoples();
+    }
+
+    @Override
+    public People getPeopleById(int id) throws PeopleDAOException {
+        return peopleDAO.getUserById(id);
+    }
+
+    @Override
+    public boolean updatePeople(People people) throws PeopleDAOException {
+        return peopleDAO.updatePeople(people);
     }
 }

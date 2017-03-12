@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+             xmlns:context="http://www.springframework.org/schema/context"
+             xsi:schemaLocation="http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-4.2.xsd
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!--<mvc:annotation-driven/>-->
+    <!--<context:component-scan base-package="ru.bernarsoft"/>-->
+
+
+    <!--<http auto-config="true">-->
+        <!--&lt;!&ndash;<intercept-url pattern="/index*" access="hasRole('ROLE_USER') OR hasRole('ROLE_ANONYMOUS')"/>&ndash;&gt;-->
+        <!--<intercept-url pattern="/calendar/*" access="hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN')" />-->
+        <!--<form-login login-page="/login"-->
+        <!--login-processing-url="/j_spring_security_check"-->
+        <!--username-parameter="j_username"-->
+        <!--password-parameter="j_password"-->
+        <!--default-target-url="/"-->
+        <!--authentication-failure-url="/"/>-->
+        <!--<csrf disabled="true"/>-->
+    <!--</http>-->
+
+    <!--<authentication-manager>-->
+        <!--<authentication-provider user-service-ref="customUserDetailsService" />-->
+    <!--</authentication-manager>-->
+
+    <!--<beans:bean id="customUserDetailsService"-->
+                <!--class="ru.bernarsoft.security.CustomUserDetailsService" />-->
+
+    <!--<http>-->
+        <!--<intercept-url pattern="/index*" access="hasRole('ROLE_USER') OR hasRole('ROLE_ANONYMOUS')"/>-->
+        <!--<intercept-url pattern="/calendar**" access="hasRole('ROLE_USER') OR hasRole('ROLE_ADMIN')"/>-->
+        <!--<form-login login-page="/login"-->
+                    <!--login-processing-url="/j_spring_security_check"-->
+                    <!--username-parameter="j_username"-->
+                    <!--password-parameter="j_password"-->
+                    <!--default-target-url="/"-->
+                    <!--authentication-failure-url="/auth?error=true"/>-->
+        <!--<logout logout-url="/logout" logout-success-url="/" invalidate-session="true"/>-->
+        <!--<anonymous username="guest" granted-authority="ROLE_ANONYMOUS"/>-->
+        <!--<remember-me/>-->
+        <!--<csrf disabled="true"/>-->
+    <!--</http>-->
+
+
+    <!--<authentication-manager>-->
+        <!--<authentication-provider>-->
+            <!--<user-service>-->
+                <!--<user name="admin" password="pass" authorities="ROLE_ADMIN, ROLE_USER" />-->
+                <!--<user name="user" password="pass" authorities="ROLE_USER" />-->
+                <!--<user name="test" password="test" disabled="true" authorities="ROLE_USER" />-->
+            <!--</user-service>-->
+        <!--</authentication-provider>-->
+    <!--</authentication-manager>-->
+
+
+</beans:beans>

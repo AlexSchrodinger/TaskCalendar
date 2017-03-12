@@ -27,41 +27,35 @@ public class PeopleDAO {
     private static final String SQL_UPLOAD_ALL = "INSERT INTO people (id, firstname, lastname, email, login, password, is_blocked) " +
             "VALUES (?, ?, ?, ?, ?, ?, ?);";
     private static final String SQL_FIND_USER = "SELECT * FROM people WHERE login = ? AND password = ?";
+    private static final String SQL_FIND_LOGIN = "SELECT * FROM people WHERE login = ?";
+    private static final String SQL_FIND_ID = "SELECT * FROM people WHERE id = ?";
+    private static final String SQL_UPDATE_PEOPLE = "UPDATE people SET id=?, firstname=?, lastname=?, email=?, password=? WHERE id = ?";
 
 
-    public People create() {
-        return null;
-    }
-
-    public People read(int key) {
-        return null;
-    }
-
-
-    public void update(People people) {
-
-    }
-
-    public void delete(People people) {
-
-    }
-
-    public List<People> getAll() throws SQLException {
+    public List<People> getAllPeoples() throws PeopleDAOException {
         List<People> listOfPeople = new LinkedList<>();
         Connector connector = Connector.getInstance();
-        ResultSet resultSet = connector.query(SQL_GET_ALL);
+        ResultSet resultSet = null;
+        try {
+            resultSet = connector.query(SQL_GET_ALL);
 
-        while (resultSet.next()){
-            People people = new People(resultSet.getLong("id"),
-                    resultSet.getString("firstname"),
-                    resultSet.getString("lastname"),
-                    resultSet.getString("email"),
-                    resultSet.getString("login"),
-                    resultSet.getString("password"),
-                    resultSet.getBoolean("is_blocked"),
-                    resultSet.getString("role"));
-            listOfPeople.add(people);
+            while (resultSet.next()){
+                People people = new People(resultSet.getLong("id"),
+                        resultSet.getString("firstname"),
+                        resultSet.getString("lastname"),
+                        resultSet.getString("email"),
+                        resultSet.getString("login"),
+                        resultSet.getString("password"),
+                        resultSet.getBoolean("is_blocked"),
+                        resultSet.getString("role"));
+                listOfPeople.add(people);
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e);
+            throw new PeopleDAOException();
         }
+
+
         return listOfPeople;
     }
 
@@ -116,6 +110,7 @@ public class PeopleDAO {
             throw new PeopleDAOException();
         }
         return false;
+
     }
     public People getUserByLoginAndPassword(String login, String password) throws PeopleDAOException {
 
@@ -145,5 +140,92 @@ public class PeopleDAO {
             throw new PeopleDAOException();
         }
         return people;
+    }
+
+    public People getUserByLogin(String login) throws PeopleDAOException {
+
+        LOGGER.debug("Ищем по логину в базе");
+
+        People people = null;
+        try {
+            Connector connector = Connector.getInstance();
+            PreparedStatement ps = connector.preparedStatement(SQL_FIND_LOGIN);
+            ps.setString(1, login);
+
+            ResultSet resultSet = ps.executeQuery();
+            if(resultSet.next()) {
+                LOGGER.debug("find");
+                people = new People(resultSet.getLong("id"),
+                        resultSet.getString("firstname"),
+                        resultSet.getString("lastname"),
+                        resultSet.getString("email"),
+                        resultSet.getString("login"),
+                        resultSet.getString("password"),
+                        resultSet.getBoolean("is_blocked"),
+                        resultSet.getString("role"));
+            } else {
+                LOGGER.debug(login + " not found");
+                throw new PeopleDAOException();
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e);
+            throw new PeopleDAOException();
+        }
+        return people;
+    }
+
+    public People getUserById(int id) throws PeopleDAOException {
+        People people = null;
+        try {
+            Connector connector = Connector.getInstance();
+            PreparedStatement ps = connector.preparedStatement(SQL_FIND_ID);
+            ps.setInt(1, id);
+
+            ResultSet resultSet = ps.executeQuery();
+            if(resultSet.next()) {
+                LOGGER.debug("find");
+                people = new People(resultSet.getLong("id"),
+                        resultSet.getString("firstname"),
+                        resultSet.getString("lastname"),
+                        resultSet.getString("email"),
+                        resultSet.getString("login"),
+                        resultSet.getString("password"),
+                        resultSet.getBoolean("is_blocked"),
+                        resultSet.getString("role"));
+            } else {
+                LOGGER.debug(id + " not found");
+                throw new PeopleDAOException();
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e);
+            throw new PeopleDAOException();
+        }
+        return people;
+    }
+
+    public boolean updatePeople(People people) throws PeopleDAOException {
+        try {
+            Connector connector = Connector.getInstance();
+            PreparedStatement ps = connector.preparedStatement(SQL_UPDATE_PEOPLE);
+
+            ps.setLong(1, people.getId());
+            ps.setString(2, people.getFirstname());
+            ps.setString(3, people.getLastname());
+            ps.setString(4, people.getEmail());
+            ps.setString(5, people.getLogin());
+            ps.setString(6, people.getPassword());
+            ps.setString(7, "user");
+            int count = ps.executeUpdate();
+            if(count > 0){
+                LOGGER.debug("inserted " + count);
+                return true;
+            }else{
+                LOGGER.debug(" not inserted");
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e);
+            throw new PeopleDAOException();
+        }
+        return false;
     }
 }

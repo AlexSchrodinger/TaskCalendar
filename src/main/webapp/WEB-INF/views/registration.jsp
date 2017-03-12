@@ -15,7 +15,7 @@
 
 <div class="container">
     <% if (request.getSession().getAttribute("firstName") != null) {%>
-    <div class=" text-center col-md-4 col-md-offset-10">
+    <div class=" text-center col-md-3 col-md-offset-10">
         <h4>Пользователь, <%= request.getSession().getAttribute("firstName") %></h4>
         <a href="/logout">Выйти</a>
     </div>

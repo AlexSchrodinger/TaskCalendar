@@ -17,12 +17,21 @@
 
 <div class="container">
     <% if (request.getSession().getAttribute("firstName") != null) {%>
-    <div class=" text-center col-md-4 col-md-offset-10">
+    <div class=" text-center col-md-3 col-md-offset-10">
         <h4>Пользователь, <%= request.getSession().getAttribute("firstName") %></h4>
         <a href="/logout">Выйти</a>
     </div>
     <%}%>
 </div>
+
+<%--<div>--%>
+    <%--<c:url value="/j_spring_security_check" var="loginUrl"/>--%>
+    <%--<form action="${loginUrl}" method="post">--%>
+        <%--<input type="text" name="j_username" placeholder="Login" value="">--%>
+        <%--<input type="password"name="j_password" placeholder="Password" required value="">--%>
+        <%--<button type="submit">Войти</button>--%>
+    <%--</form>--%>
+<%--</div>--%>
 
 <div class="container text-center">
     <h3>Авторизация:</h3>

@@ -1,6 +1,7 @@
 package ru.bernarsoft;
 
 import org.apache.log4j.Logger;
+import ru.bernarsoft.common.exceptions.PeopleDAOException;
 import ru.bernarsoft.models.manager.DownloadFromDB;
 
 import java.sql.SQLException;
@@ -16,7 +17,7 @@ public class Main {
             public void run() {
                 try {
                     downloadFromDB.downloadPeoples();
-                } catch (SQLException e) {
+                } catch (PeopleDAOException e) {
                     LOGGER.error(e);
                 }
             }
@@ -59,5 +60,9 @@ public class Main {
         thread2.start();
         thread3.start();
         thread4.start();
+
+
     }
+
+
 }

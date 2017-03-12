@@ -1,5 +1,6 @@
 package ru.bernarsoft.models.manager;
 
+import ru.bernarsoft.common.exceptions.PeopleDAOException;
 import ru.bernarsoft.models.DAO.CheckListDAO;
 import ru.bernarsoft.models.DAO.PeopleDAO;
 import ru.bernarsoft.models.DAO.TaskDAO;
@@ -18,10 +19,10 @@ public class DownloadFromDB {
     public DownloadFromDB() {
     }
 
-    public void downloadPeoples() throws SQLException {
+    public void downloadPeoples() throws  PeopleDAOException {
         Peoples peoples = new Peoples();
         PeopleDAO peopleDAO = new PeopleDAO();
-        peoples.setPeoples(peopleDAO.getAll());
+        peoples.setPeoples(peopleDAO.getAllPeoples());
         ParserXML.parseToXml("people.xml", peoples, Peoples.class);
     }
 

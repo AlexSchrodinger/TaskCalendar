@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="ru.bernarsoft.models.pojo.Task" %>
+<%@ page import="ru.bernarsoft.models.pojo.People" %>
 <html>
 <head>
     <title>Calendar</title>
@@ -29,29 +29,27 @@
     <table class="table table-striped">
         <tr>
             <td><b>#</b></td>
-            <td><b>Задача</b></td>
-            <td><b>Дата</b></td>
-            <td><b>Исполнено</b></td>
+            <td><b>Имя</b></td>
+            <td><b>Фамилия</b></td>
+            <td><b>Емайл</b></td>
+            <td><b>Логин</b></td>
+            <td><b>Пароль</b></td>
+            <td><b>Блокировка</b></td>
         </tr>
 
         <%--<jsp:useBean id="listOfTask" scope="request" type="java.util.List"/>--%>
-        <c:forEach items="${listOfTask}" var="task">
+        <c:forEach items="${listOfPeoples}" var="people">
             <tr>
-                <td><c:out value="${task.id}"></c:out></td>
-                <td><c:out value="${task.event}"></c:out></td>
-                <td><c:out value="${task.date}"></c:out></td>
-                <%--<td><c:out value="${task.is_complete}"></c:out></td>--%>
+                <td><c:out value="${people.id}"></c:out></td>
+                <td><c:out value="${people.firstname}"></c:out></td>
+                <td><c:out value="${people.lastname}"></c:out></td>
+                <td><c:out value="${people.email}"></c:out></td>
+                <td><c:out value="${people.login}"></c:out></td>
+                <td><c:out value="${people.password}"></c:out></td>
+                <td><c:out value="${people.is_blocked}"></c:out></td>
+                    <%--<td><c:out value="${task.is_complete}"></c:out></td>--%>
                 <td>
-                    <div class="checkbox">
-                        <c:choose>
-                            <c:when test="${task.is_complete}">
-                                <label><input type="checkbox" value="" checked>Исполнено</label>
-                            </c:when>
-                            <c:otherwise>
-                                <label><input type="checkbox" value="">Исполнено</label>
-                            </c:otherwise>
-                        </c:choose>
-                    </div>
+                    <a href="/admin/edit?id=${people.id}">edit</a>
                 </td>
 
             </tr>
@@ -59,6 +57,8 @@
     </table>
     <a href="/">На главную</a>
 </div>
+
+
 
 </body>
 </html>
