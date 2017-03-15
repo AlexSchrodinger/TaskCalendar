@@ -29,7 +29,7 @@ public class PeopleDAO {
     private static final String SQL_FIND_USER = "SELECT * FROM people WHERE login = ? AND password = ?";
     private static final String SQL_FIND_LOGIN = "SELECT * FROM people WHERE login = ?";
     private static final String SQL_FIND_ID = "SELECT * FROM people WHERE id = ?";
-    private static final String SQL_UPDATE_PEOPLE = "UPDATE people SET id=?, firstname=?, lastname=?, email=?, password=? WHERE id = ?";
+    private static final String SQL_UPDATE_PEOPLE = "UPDATE people SET id=?, firstname=?, lastname=?, email=?, login=?, password=?, is_blocked=? WHERE id = ?";
 
 
     public List<People> getAllPeoples() throws PeopleDAOException {
@@ -214,7 +214,8 @@ public class PeopleDAO {
             ps.setString(4, people.getEmail());
             ps.setString(5, people.getLogin());
             ps.setString(6, people.getPassword());
-            ps.setString(7, "user");
+            ps.setBoolean(7, people.getIs_blocked());
+            ps.setLong(8, people.getId());
             int count = ps.executeUpdate();
             if(count > 0){
                 LOGGER.debug("inserted " + count);

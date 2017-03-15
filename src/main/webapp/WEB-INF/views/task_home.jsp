@@ -14,46 +14,74 @@
 </head>
 <body>
 
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="">Календарь задач</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li class="active"><a href="/calendar/all">Задачи</a></li>
+            <li><a href="/admin/panel">Админка</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/registration"><span class="glyphicon glyphicon-user"></span> Регистрация</a></li>
+            <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Войти</a></li>
+        </ul>
+    </div>
+</nav>
+
 <div class="container">
     <% if (request.getSession().getAttribute("firstName") != null) {%>
     <div class=" text-center col-md-3 col-md-offset-10">
         <h4>Пользователь, <%= request.getSession().getAttribute("firstName") %></h4>
         <%--<h4>Пользователь, <c:out value="${request.getSession().getAttribute('firstName')}"/></h4>--%>
-        <a href="/logout">Выйти</a>
-    </div>
-    <%}%>
+<a href="/logout">Выйти</a>
 </div>
+<%}%>
+</div>
+
 
 <div class="container">
     <h2>Список задач</h2>
-    <table class="table table-striped">
+    <div class="container">
+        <ul class="nav nav-tabs">
+            <li class=""><a href="/calendar/all">Все</a></li>
+            <li class="active"><a href="/calendar/home">Домашние</a></li>
+            <li class=""><a href="/calendar/family">Семейные</a></li>
+            <li class=""><a href="/calendar/work">Рабочие</a></li>
+            <li class=""><a href="/calendar/other">Остальные</a></li>
+        </ul>
+        <br>
+    </div>
+    <table class="table table-hover">
         <tr>
             <td><b>#</b></td>
             <td><b>Задача</b></td>
             <td><b>Дата</b></td>
             <td><b>Исполнено</b></td>
+            <td><b>Действие</b></td>
         </tr>
 
         <%--<jsp:useBean id="listOfTask" scope="request" type="java.util.List"/>--%>
         <c:forEach items="${listOfTask}" var="task">
-            <tr>
+            <tr class="${task.is_complete == true ? "success" : ""}">
                 <td><c:out value="${task.id}"></c:out></td>
                 <td><c:out value="${task.event}"></c:out></td>
                 <td><c:out value="${task.date}"></c:out></td>
-                <%--<td><c:out value="${task.is_complete}"></c:out></td>--%>
+                    <%--<td><c:out value="${task.is_complete}"></c:out></td>--%>
                 <td>
-                    <div class="checkbox">
-                        <c:choose>
-                            <c:when test="${task.is_complete}">
-                                <label><input type="checkbox" value="" checked>Исполнено</label>
-                            </c:when>
-                            <c:otherwise>
-                                <label><input type="checkbox" value="">Исполнено</label>
-                            </c:otherwise>
-                        </c:choose>
-                    </div>
+                    <c:if test="${task.is_complete}">
+                        Исполнено
+                    </c:if>
                 </td>
-
+                <td>
+                    <form action="/calendar/complete" method="post">
+                        <input type="hidden" name="id" value="${task.id}">
+                        <input type="hidden" name="url" value="/calendar/home">
+                        <input type="submit" class="btn btn-default" value="Исполнить" >
+                    </form>
+                </td>
             </tr>
         </c:forEach>
     </table>
@@ -62,3 +90,4 @@
 
 </body>
 </html>
+

@@ -15,6 +15,23 @@
 </head>
 <body>
 
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">Календарь задач</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/calendar/all">Задачи</a></li>
+            <li class="active"><a href="/admin/panel">Админка</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/registration"><span class="glyphicon glyphicon-user"></span> Регистрация</a></li>
+            <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Войти</a></li>
+        </ul>
+    </div>
+</nav>
+
 <div class="container">
     <% if (request.getSession().getAttribute("firstName") != null) {%>
     <div class=" text-center col-md-3 col-md-offset-10">
@@ -28,6 +45,9 @@
     <div class="col-md-4 text-right">
         <h1>Изменение:</h1></br>
         <form:form action="/admin/edit"  method="post" modelAttribute="people">
+            <div class="form-group">
+                <form:input type="hidden" name="id" path="id" value="${people.id}"  />
+            </div>
             <div class="form-group">
                 <label for="firstname">Firstname:</label>
                 <form:input type="text" name="firstname" path="firstname" value="${people.firstname}" />
@@ -48,7 +68,11 @@
                 <label for="password">Password:</label>
                 <form:input type="password" name="password" path="password" value="${people.email}" />
             </div>
-            <input type="submit" class="btn btn-primary" value="Submit" formmethod="post">
+            <div class="form-group">
+                <label for="is_blocked">Залочить</label>
+                <form:checkbox path="is_blocked" name="is_blocked" />
+            </div>
+            <input type="submit" class="btn btn-primary" value="Сохранить" formmethod="post">
         </form:form>
     </div>
 </div>

@@ -15,6 +15,23 @@
 </head>
 <body>
 
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">Календарь задач</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/calendar/all">Задачи</a></li>
+            <li><a href="/admin/panel">Админка</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/registration"><span class="glyphicon glyphicon-user"></span> Регистрация</a></li>
+            <li class="active"><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Войти</a></li>
+        </ul>
+    </div>
+</nav>
+
 <div class="container">
     <% if (request.getSession().getAttribute("firstName") != null) {%>
     <div class=" text-center col-md-3 col-md-offset-10">
@@ -24,28 +41,35 @@
     <%}%>
 </div>
 
-<%--<div>--%>
-    <%--<c:url value="/j_spring_security_check" var="loginUrl"/>--%>
-    <%--<form action="${loginUrl}" method="post">--%>
-        <%--<input type="text" name="j_username" placeholder="Login" value="">--%>
-        <%--<input type="password"name="j_password" placeholder="Password" required value="">--%>
-        <%--<button type="submit">Войти</button>--%>
-    <%--</form>--%>
-<%--</div>--%>
-
 <div class="container text-center">
     <h3>Авторизация:</h3>
-    <form action="/login" method="post" >
+    <c:url value="/j_spring_security_check" var="loginUrl"/>
+    <form action="${loginUrl}" method="post">
         <div class="input-group col-md-4 col-md-offset-4">
             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-            <input type="text" class="form-control" name="login" placeholder="Login" required = "required"/>
+            <input type="text" class="form-control" name="j_username" placeholder="Login" required = "required"/>
         </div>
         <div class="input-group col-md-4 col-md-offset-4">
             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-            <input type="password" class="form-control" name="password" placeholder="Password" required = "required" />
+            <input type="password" class="form-control" name="j_password" placeholder="Password" required = "required" />
         </div>
-        <input type="submit" class="btn btn-primary" value="login" formmethod="post" />
+        <button type="submit" class="btn btn-primary" >Войти</button>
     </form>
 </div>
+
+<%--<div class="container text-center">--%>
+    <%--<h3>Авторизация:</h3>--%>
+    <%--<form action="/login" method="post" >--%>
+        <%--<div class="input-group col-md-4 col-md-offset-4">--%>
+            <%--<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>--%>
+            <%--<input type="text" class="form-control" name="login" placeholder="Login" required = "required"/>--%>
+        <%--</div>--%>
+        <%--<div class="input-group col-md-4 col-md-offset-4">--%>
+            <%--<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>--%>
+            <%--<input type="password" class="form-control" name="password" placeholder="Password" required = "required" />--%>
+        <%--</div>--%>
+        <%--<input type="submit" class="btn btn-primary" value="login" formmethod="post" />--%>
+    <%--</form>--%>
+<%--</div>--%>
 </body>
 </html>

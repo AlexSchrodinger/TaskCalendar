@@ -23,4 +23,9 @@ public class TaskServiceImpl implements TaskService {
         return taskDAO.getAll();
     }
 
+    @Override
+    public boolean setCompleteTask(int id) {
+        return taskDAO.setCompleteById(id);
+    }
+
 }

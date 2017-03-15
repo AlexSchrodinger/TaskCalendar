@@ -7,4 +7,5 @@ import java.util.List;
 public interface TaskService {
 
     List<Task> getAllTasks();
+    boolean setCompleteTask(int id);
 }

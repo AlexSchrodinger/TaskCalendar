@@ -13,6 +13,23 @@
 </head>
 <body>
 
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">Календарь задач</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/calendar/all">Задачи</a></li>
+            <li><a href="/admin/panel">Админка</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="/registration"><span class="glyphicon glyphicon-user"></span> Регистрация</a></li>
+            <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Войти</a></li>
+        </ul>
+    </div>
+</nav>
+
 <div class="container">
     <% if (request.getSession().getAttribute("firstName") != null) {%>
     <div class=" text-center col-md-3 col-md-offset-10">
@@ -46,7 +63,7 @@
             <label for="password">Password:</label>
             <input type="password" name="password" id="password" required>
         </div>
-        <input type="submit" class="btn btn-primary" value="Submit" formmethod="post">
+        <input type="submit" class="btn btn-primary" value="Сохранить" formmethod="post">
     </form>
     </div>
 </div>

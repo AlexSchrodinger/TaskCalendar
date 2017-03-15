@@ -1,9 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="ru.bernarsoft.models.pojo.People" %>
+
 <html>
 <head>
-    <title>Calendar</title>
+    <title>Admin</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
           integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
@@ -14,19 +15,28 @@
 </head>
 <body>
 
-<div class="container">
-    <% if (request.getSession().getAttribute("firstName") != null) {%>
-    <div class=" text-center col-md-3 col-md-offset-10">
-        <h4>Пользователь, <%= request.getSession().getAttribute("firstName") %></h4>
-        <%--<h4>Пользователь, <c:out value="${request.getSession().getAttribute('firstName')}"/></h4>--%>
-        <a href="/logout">Выйти</a>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">Календарь задач</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/calendar/all">Задачи</a></li>
+            <li class="active"><a href="/admin/panel">Админка</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href=${authpeople.firstname == null ? '/registration' : ''}>
+                <span class="glyphicon glyphicon-user"></span> ${authpeople.firstname == null ? "Регистрация" : authpeople.firstname}</a></li>
+            <li><a href=${authpeople.firstname == null ? "/login" : "/logout"}>
+                <span class="glyphicon glyphicon-log-in"></span> ${authpeople.firstname == null ? "Войти" : "Выйти"}</a></li>
+        </ul>
     </div>
-    <%}%>
-</div>
+</nav>
 
 <div class="container">
-    <h2>Список задач</h2>
-    <table class="table table-striped">
+    <h2>Пользователи</h2>
+    <table class="table table-hover">
         <tr>
             <td><b>#</b></td>
             <td><b>Имя</b></td>
@@ -35,23 +45,29 @@
             <td><b>Логин</b></td>
             <td><b>Пароль</b></td>
             <td><b>Блокировка</b></td>
+            <td><b>Действие</b></td>
         </tr>
 
-        <%--<jsp:useBean id="listOfTask" scope="request" type="java.util.List"/>--%>
         <c:forEach items="${listOfPeoples}" var="people">
-            <tr>
+            <tr class="${people.is_blocked == true ? "danger" : ""}">
                 <td><c:out value="${people.id}"></c:out></td>
                 <td><c:out value="${people.firstname}"></c:out></td>
                 <td><c:out value="${people.lastname}"></c:out></td>
                 <td><c:out value="${people.email}"></c:out></td>
                 <td><c:out value="${people.login}"></c:out></td>
                 <td><c:out value="${people.password}"></c:out></td>
-                <td><c:out value="${people.is_blocked}"></c:out></td>
-                    <%--<td><c:out value="${task.is_complete}"></c:out></td>--%>
                 <td>
-                    <a href="/admin/edit?id=${people.id}">edit</a>
+                    <c:choose>
+                        <c:when test="${people.is_blocked}">
+                            <label>заблокирован</label>
+                        </c:when>
+                        <c:otherwise>
+                            <label>открыт</label>
+                        </c:otherwise>
+                    </c:choose>
+                <td>
+                    <a href="/admin/edit?id=${people.id}">Редактировать</a>
                 </td>
-
             </tr>
         </c:forEach>
     </table>
