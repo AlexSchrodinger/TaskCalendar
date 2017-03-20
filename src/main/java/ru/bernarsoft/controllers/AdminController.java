@@ -2,8 +2,6 @@ package ru.bernarsoft.controllers;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -45,8 +43,6 @@ public class AdminController {
             LOGGER.error(e);
             return new ModelAndView("error");
         }
-
-
         return modelAndView;
     }
 
@@ -59,7 +55,7 @@ public class AdminController {
             LOGGER.error(e);
             return new ModelAndView("error");
         }
-        return new ModelAndView("edit_people", "people", people);
+        return new ModelAndView("people_edit", "people", people);
     }
 
     @RequestMapping(value = "/admin/edit", method = RequestMethod.POST)

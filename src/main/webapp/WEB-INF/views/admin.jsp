@@ -15,24 +15,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/">Календарь задач</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="/calendar/all">Задачи</a></li>
-            <li class="active"><a href="/admin/panel">Админка</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href=${authpeople.firstname == null ? '/registration' : ''}>
-                <span class="glyphicon glyphicon-user"></span> ${authpeople.firstname == null ? "Регистрация" : authpeople.firstname}</a></li>
-            <li><a href=${authpeople.firstname == null ? "/login" : "/logout"}>
-                <span class="glyphicon glyphicon-log-in"></span> ${authpeople.firstname == null ? "Войти" : "Выйти"}</a></li>
-        </ul>
-    </div>
-</nav>
+<%@ include file="header.jsp"%>
 
 <div class="container">
     <h2>Пользователи</h2>

@@ -8,4 +8,5 @@ public interface TaskService {
 
     List<Task> getAllTasks();
     boolean setCompleteTask(int id);
+    List<Task> getTasksByType(int id_type);
 }

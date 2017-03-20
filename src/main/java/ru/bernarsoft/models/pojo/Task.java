@@ -3,27 +3,29 @@ package ru.bernarsoft.models.pojo;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Date;
+
 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Task {
   private Long id;
   private String event;
-  private java.util.Date date;
-  private Long id_user;
+  private Date date;
+  private String is_complete;
+  private Long id_people;
   private Long id_type;
-  private Boolean is_complete;
 
   public Task() {
   }
 
-  public Task(Long id, String event, java.util.Date date, Long id_user, Long id_type, Boolean is_complete) {
+  public Task(Long id, String event, Date date, String is_complete, Long id_people, Long id_type) {
     this.id = id;
     this.event = event;
     this.date = date;
-    this.id_user = id_user;
-    this.id_type = id_type;
     this.is_complete = is_complete;
+    this.id_people = id_people;
+    this.id_type = id_type;
   }
 
   public Long getId() {
@@ -42,20 +44,28 @@ public class Task {
     this.event = event;
   }
 
-  public java.util.Date getDate() {
+  public Date getDate() {
     return date;
   }
 
-  public void setDate(java.util.Date date) {
+  public void setDate(Date date) {
     this.date = date;
   }
 
-  public Long getId_user() {
-    return id_user;
+  public String getIs_complete() {
+    return is_complete;
   }
 
-  public void setId_user(Long id_user) {
-    this.id_user = id_user;
+  public void setIs_complete(String is_complete) {
+    this.is_complete = is_complete;
+  }
+
+  public Long getId_people() {
+    return id_people;
+  }
+
+  public void setId_people(Long id_people) {
+    this.id_people = id_people;
   }
 
   public Long getId_type() {
@@ -64,13 +74,5 @@ public class Task {
 
   public void setId_type(Long id_type) {
     this.id_type = id_type;
-  }
-
-  public Boolean getIs_complete() {
-    return is_complete;
-  }
-
-  public void setIs_complete(Boolean is_complete) {
-    this.is_complete = is_complete;
   }
 }

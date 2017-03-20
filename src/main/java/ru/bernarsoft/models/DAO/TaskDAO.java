@@ -1,66 +1,54 @@
 package ru.bernarsoft.models.DAO;
 
 
+import ma.glasnost.orika.MapperFacade;
+import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.impl.DefaultMapperFactory;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 import ru.bernarsoft.common.exceptions.PeopleDAOException;
 import ru.bernarsoft.models.connector.Connector;
+import ru.bernarsoft.models.entyties.PeopleEntity;
+import ru.bernarsoft.models.entyties.TaskEntity;
+import ru.bernarsoft.models.pojo.People;
 import ru.bernarsoft.models.pojo.Task;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 @Component
 public class TaskDAO {
+    private static final EntityManagerFactory EMF = Persistence.createEntityManagerFactory("CALENDARDB");
+
     private static final Logger LOGGER = LogManager.getLogger(TaskDAO.class);
 
-    private static final String SQL_GET_ALL = "SELECT * FROM task";
     private static final String SQL_UPDATE_COMPLETE = "UPDATE task SET is_complete=? WHERE id = ?";
 
     public TaskDAO() {
     }
 
-    public Task create() {
-        return null;
-    }
-
-
-    public Task read(int key) {
-        return null;
-    }
-
-
-    public void update(Task task) {
-
-    }
-
-    public void delete(Task task) {
-
-    }
-
     public List<Task> getAll() {
-        Connector connector = Connector.getInstance();
-        List<Task> listOfTask = new LinkedList<>();
+        List<Task> listOfTask = new ArrayList<>();
+        MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
 
-        try {
-            ResultSet resultSet = connector.query(SQL_GET_ALL);
-            while (resultSet.next()) {
-
-                Task task = new Task(resultSet.getLong("id"),
-                        resultSet.getString("event"),
-                        resultSet.getDate("date"),
-                        resultSet.getLong("id_people"),
-                        resultSet.getLong("id_type"),
-                        resultSet.getBoolean("is_complete"));
-                listOfTask.add(task);
-            }
-        } catch (SQLException e) {
-            LOGGER.error(e);
+        EntityManager entityManager = EMF.createEntityManager();
+        List<TaskEntity> listOfEntity =
+                entityManager.createQuery("from TaskEntity ").getResultList();
+        for (TaskEntity entity: listOfEntity) {
+            mapperFactory.classMap(TaskEntity.class, Task.class);
+            MapperFacade mapper = mapperFactory.getMapperFacade();
+            Task task = mapper.map(entity, Task.class);
+            listOfTask.add(task);
         }
         return listOfTask;
     }
@@ -85,4 +73,21 @@ public class TaskDAO {
         return false;
     }
 
+    public List<Task> getTasksByType(int id_type) {
+        List<Task> listOfTask = new ArrayList<>();
+        MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
+
+        EntityManager entityManager = EMF.createEntityManager();
+        Query query = entityManager.createQuery("from TaskEntity where idType = :id_type");
+        query.setParameter("id_type", id_type);
+        List<TaskEntity> listOfEntity = query.getResultList();
+
+        for (TaskEntity entity: listOfEntity) {
+            mapperFactory.classMap(TaskEntity.class, Task.class);
+            MapperFacade mapper = mapperFactory.getMapperFacade();
+            Task task = mapper.map(entity, Task.class);
+            listOfTask.add(task);
+        }
+        return listOfTask;
+    }
 }

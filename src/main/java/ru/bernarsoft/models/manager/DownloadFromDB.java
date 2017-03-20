@@ -22,7 +22,7 @@ public class DownloadFromDB {
     public void downloadPeoples() throws  PeopleDAOException {
         Peoples peoples = new Peoples();
         PeopleDAO peopleDAO = new PeopleDAO();
-        peoples.setPeoples(peopleDAO.getAllPeoples());
+//        peoples.setPeoples(peopleDAO.getAllPeoples());
         ParserXML.parseToXml("people.xml", peoples, Peoples.class);
     }
 

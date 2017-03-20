@@ -14,32 +14,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/">Календарь задач</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
-            <li class="active"><a href="/calendar/all">Задачи</a></li>
-            <li><a href="/admin/panel">Админка</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="/registration"><span class="glyphicon glyphicon-user"></span> Регистрация</a></li>
-            <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Войти</a></li>
-        </ul>
-    </div>
-</nav>
-
-<div class="container">
-    <% if (request.getSession().getAttribute("firstName") != null) {%>
-    <div class=" text-center col-md-3 col-md-offset-10">
-        <h4>Пользователь, <%= request.getSession().getAttribute("firstName") %></h4>
-        <%--<h4>Пользователь, <c:out value="${request.getSession().getAttribute('firstName')}"/></h4>--%>
-        <a href="/logout">Выйти</a>
-    </div>
-    <%}%>
-</div>
+<%@ include file="header.jsp"%>
 
 
 <div class="container">
@@ -63,13 +38,11 @@
             <td><b>Действие</b></td>
         </tr>
 
-        <%--<jsp:useBean id="listOfTask" scope="request" type="java.util.List"/>--%>
         <c:forEach items="${listOfTask}" var="task">
             <tr class="${task.is_complete == true ? "success" : ""}">
                 <td><c:out value="${task.id}"></c:out></td>
                 <td><c:out value="${task.event}"></c:out></td>
                 <td><c:out value="${task.date}"></c:out></td>
-                <%--<td><c:out value="${task.is_complete}"></c:out></td>--%>
                 <td>
                     <c:if test="${task.is_complete}">
                         Исполнено
@@ -85,8 +58,6 @@
                             </div>
                         </form>
                     </c:if>
-
-
                 </td>
             </tr>
         </c:forEach>

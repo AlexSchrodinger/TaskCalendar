@@ -38,25 +38,25 @@ public class TaskController {
 
     @RequestMapping(value = "/calendar/home", method = RequestMethod.GET)
     public ModelAndView showHomeTask() {
-        List<Task> listOfTask = null;
+        List<Task> listOfTask = taskService.getTasksByType(1);
         return new ModelAndView("task_home", "listOfTask", listOfTask);
     }
 
     @RequestMapping(value = "/calendar/family", method = RequestMethod.GET)
     public ModelAndView showFamilyTask() {
-        List<Task> listOfTask = null;
+        List<Task> listOfTask = taskService.getTasksByType(2);
         return new ModelAndView("task_family", "listOfTask", listOfTask);
     }
 
     @RequestMapping(value = "/calendar/work", method = RequestMethod.GET)
     public ModelAndView showWorkTask() {
-        List<Task> listOfTask = null;
+        List<Task> listOfTask = taskService.getTasksByType(3);
         return new ModelAndView("task_work", "listOfTask", listOfTask);
     }
 
     @RequestMapping(value = "/calendar/other", method = RequestMethod.GET)
     public ModelAndView showOtherTask() {
-        List<Task> listOfTask = null;
+        List<Task> listOfTask = taskService.getTasksByType(4);
         return new ModelAndView("task_other", "listOfTask", listOfTask);
     }
 

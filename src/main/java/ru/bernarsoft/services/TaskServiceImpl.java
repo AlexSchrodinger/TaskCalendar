@@ -28,4 +28,9 @@ public class TaskServiceImpl implements TaskService {
         return taskDAO.setCompleteById(id);
     }
 
+    @Override
+    public List<Task> getTasksByType(int id_type) {
+        return taskDAO.getTasksByType(id_type);
+    }
+
 }

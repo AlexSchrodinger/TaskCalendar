@@ -1,23 +1,31 @@
 package ru.bernarsoft.models.DAO;
 
 
+import ma.glasnost.orika.MapperFacade;
+import ma.glasnost.orika.MapperFactory;
+import ma.glasnost.orika.impl.DefaultMapperFactory;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import ru.bernarsoft.common.exceptions.PeopleDAOException;
 import ru.bernarsoft.models.connector.Connector;
+import ru.bernarsoft.models.entyties.PeopleEntity;
 import ru.bernarsoft.models.pojo.People;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.sql.BatchUpdateException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
-@Repository
+@Component
 public class PeopleDAO {
+
+    private static final EntityManagerFactory EMF = Persistence.createEntityManagerFactory("CALENDARDB");
 
     private static final Logger LOGGER = LogManager.getLogger(PeopleDAO.class);
     private static final String SQL_CREATE_USER =
@@ -33,29 +41,18 @@ public class PeopleDAO {
 
 
     public List<People> getAllPeoples() throws PeopleDAOException {
-        List<People> listOfPeople = new LinkedList<>();
-        Connector connector = Connector.getInstance();
-        ResultSet resultSet = null;
-        try {
-            resultSet = connector.query(SQL_GET_ALL);
+        List<People> listOfPeople = new ArrayList<>();
+        MapperFactory mapperFactory = new DefaultMapperFactory.Builder().build();
 
-            while (resultSet.next()){
-                People people = new People(resultSet.getLong("id"),
-                        resultSet.getString("firstname"),
-                        resultSet.getString("lastname"),
-                        resultSet.getString("email"),
-                        resultSet.getString("login"),
-                        resultSet.getString("password"),
-                        resultSet.getBoolean("is_blocked"),
-                        resultSet.getString("role"));
-                listOfPeople.add(people);
-            }
-        } catch (SQLException e) {
-            LOGGER.error(e);
-            throw new PeopleDAOException();
-        }
-
-
+        EntityManager entityManager = EMF.createEntityManager();
+        List<PeopleEntity> listOfEntity =
+                entityManager.createQuery("from PeopleEntity").getResultList();
+        for (PeopleEntity entity: listOfEntity) {
+            mapperFactory.classMap(PeopleEntity.class, People.class);
+            MapperFacade mapper = mapperFactory.getMapperFacade();
+            People people = mapper.map(entity, People.class);
+            listOfPeople.add(people);
+                    }
         return listOfPeople;
     }
 

@@ -15,31 +15,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/">Календарь задач</a>
-        </div>
-        <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="/calendar/all">Задачи</a></li>
-            <li class="active"><a href="/admin/panel">Админка</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="/registration"><span class="glyphicon glyphicon-user"></span> Регистрация</a></li>
-            <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Войти</a></li>
-        </ul>
-    </div>
-</nav>
-
-<div class="container">
-    <% if (request.getSession().getAttribute("firstName") != null) {%>
-    <div class=" text-center col-md-3 col-md-offset-10">
-        <h4>Пользователь, <%= request.getSession().getAttribute("firstName") %></h4>
-        <a href="/logout">Выйти</a>
-    </div>
-    <%}%>
-</div>
+<%@ include file="header.jsp"%>
 
 <div class="container">
     <div class="col-md-4 text-right">

@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="calendar@localhost" uuid="3b5d92d3-b57d-41af-ab32-0cb35be5280b">
-      <driver-ref>postgresql</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5433/calendar</jdbc-url>
-    </data-source>
     <data-source source="LOCAL" name="calendardb@localhost" uuid="6e6b0ecc-8ef6-4769-8fb5-0db141f6c76b">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
