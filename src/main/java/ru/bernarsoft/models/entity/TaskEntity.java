@@ -1,4 +1,4 @@
-package ru.bernarsoft.models.entyties;
+package ru.bernarsoft.models.entity;
 
 import javax.persistence.*;
 //import java.sql.Date;

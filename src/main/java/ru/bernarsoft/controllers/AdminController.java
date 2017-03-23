@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.bernarsoft.common.exceptions.PeopleDAOException;
 import ru.bernarsoft.models.pojo.People;
+import ru.bernarsoft.models.repository.PeopleRepository;
 import ru.bernarsoft.services.interfaces.PeopleService;
 
 
@@ -25,20 +26,13 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/admin/panel", method = RequestMethod.GET)
-    public ModelAndView getAllPeoples(Principal principal) {
+    public ModelAndView getAllPeoples(Principal principal) throws PeopleDAOException {
         List<People> listOfPeoples;
-        People people;
         ModelAndView modelAndView = new ModelAndView("admin");
 
         try {
             listOfPeoples = peopleService.getAllPeoples();
             modelAndView.addObject("listOfPeoples", listOfPeoples);
-
-            String userlogin = principal.getName();
-            if(userlogin != null) {
-                people = peopleService.getPeopleByLogin(userlogin);
-                modelAndView.addObject("authpeople", people);
-            }
         } catch (PeopleDAOException e) {
             LOGGER.error(e);
             return new ModelAndView("error");

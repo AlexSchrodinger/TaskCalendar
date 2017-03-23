@@ -1,4 +1,4 @@
-package ru.bernarsoft.models.entyties;
+package ru.bernarsoft.models.entity;
 
 import javax.persistence.*;
 
@@ -76,11 +76,11 @@ public class PeopleEntity {
 
     @Basic
     @Column(name = "is_blocked")
-    public boolean isBlocked() {
+    public boolean getIs_blocked() {
         return isBlocked;
     }
 
-    public void setBlocked(boolean blocked) {
+    public void setIs_blocked(boolean blocked) {
         isBlocked = blocked;
     }
 

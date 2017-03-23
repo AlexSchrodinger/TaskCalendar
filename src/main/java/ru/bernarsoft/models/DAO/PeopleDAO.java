@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 import ru.bernarsoft.common.exceptions.PeopleDAOException;
 import ru.bernarsoft.models.connector.Connector;
-import ru.bernarsoft.models.entyties.PeopleEntity;
+import ru.bernarsoft.models.entity.PeopleEntity;
 import ru.bernarsoft.models.pojo.People;
 
 import javax.persistence.EntityManager;
@@ -22,6 +22,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Deprecated
 @Component
 public class PeopleDAO {
 

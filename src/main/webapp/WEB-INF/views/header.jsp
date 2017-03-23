@@ -23,7 +23,7 @@
                     <li><a href="/admin/panel">Админка</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href=${login == null ? '/registration' : ''}>
+                    <li><a href=${login == null ? '/registration' : '/profile'}>
                         <span class="glyphicon glyphicon-user"></span> ${login == null ? "Регистрация" : login}</a></li>
                     <li><a href=${login == null ? "/login" : "/logout"}>
                         <span class="glyphicon glyphicon-log-in"></span> ${login == null ? "Войти" : "Выйти"}</a></li>

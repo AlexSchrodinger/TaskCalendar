@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+@Deprecated
 public class TypeTaskDAO {
 
     public TypeTaskDAO() {

@@ -1,6 +1,7 @@
 package ru.bernarsoft.services.interfaces;
 
 import ru.bernarsoft.common.exceptions.PeopleDAOException;
+import ru.bernarsoft.models.entity.PeopleEntity;
 import ru.bernarsoft.models.pojo.People;
 
 import java.util.List;

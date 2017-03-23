@@ -7,11 +7,8 @@ import ma.glasnost.orika.impl.DefaultMapperFactory;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
-import ru.bernarsoft.common.exceptions.PeopleDAOException;
 import ru.bernarsoft.models.connector.Connector;
-import ru.bernarsoft.models.entyties.PeopleEntity;
-import ru.bernarsoft.models.entyties.TaskEntity;
-import ru.bernarsoft.models.pojo.People;
+import ru.bernarsoft.models.entity.TaskEntity;
 import ru.bernarsoft.models.pojo.Task;
 
 import javax.persistence.EntityManager;
@@ -19,13 +16,11 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
+@Deprecated
 @Component
 public class TaskDAO {
     private static final EntityManagerFactory EMF = Persistence.createEntityManagerFactory("CALENDARDB");
